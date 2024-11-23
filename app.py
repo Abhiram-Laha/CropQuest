@@ -3,12 +3,9 @@ import numpy as np
 import pickle
 from flask_session import Session  
 
-# Load model (Crop Recommendation)
 model_crop = pickle.load(open('RandomForest.pkl', 'rb'))
 
-# Load model (Fertilizer Recommendation)
-model_ferti = pickle.load(open('classifier.pkl', 'rb'))
-ferti = pickle.load(open('fertilizer.pkl', 'rb'))
+
 
 
 app = Flask(__name__)
@@ -79,49 +76,6 @@ def predict_crop():
 
     return render_template('crop_rec.html', result=result, image_filename=image_filename)
 
-
-
-
-# Render Fertilizer recommendation form page (3)
-
-@app.route('/fert-recommend')
-def fertilizer_recommendation():
-    result = session.get('result')  
-    session.pop('result', None)  
-    return render_template("Fertilizer_Rec.html", x=result)
-
-@app.route('/predict-ferti', methods=['POST'])
-def predict_fertilizer():
-    try:
-        temp = request.form.get('temp')
-        humi = request.form.get('humid')
-        mois = request.form.get('mois')
-        soil = request.form.get('soil')
-        crop = request.form.get('crop')
-        nitro = request.form.get('nitro')
-        pota = request.form.get('pota')
-        phosp = request.form.get('phos')
-
-        inputs = [temp, humi, mois, soil, crop, nitro, pota, phosp]
-        if None in inputs or not all(val.isdigit() for val in inputs):
-            session['result'] = 'Invalid input. Please provide numeric values for all fields.'
-            return redirect(url_for('home'))
-
-        input_values = [int(val) for val in inputs]
-        prediction = model_ferti.predict([input_values])
-        res = str(ferti.classes_[prediction[0]])
-        session['result'] = res
-        return redirect(url_for('fertilizer_recommendation'))
-
-    except Exception as e:
-        session['result'] = f"Error: {str(e)}"
-        return redirect(url_for('fertilizer_recommendation'))
-    
-    
-    
-    
-    
-    
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
