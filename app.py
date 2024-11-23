@@ -6,8 +6,6 @@ from flask_session import Session
 model_crop = pickle.load(open('RandomForest.pkl', 'rb'))
 
 
-
-
 app = Flask(__name__)
 
 
