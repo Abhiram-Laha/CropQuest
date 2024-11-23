@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Recommendation</title>
+    <link rel="website icon" type="png" href="static\images\logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="website icon" type="png" href="static/images/logo3.png">
+    <style>
+        body {
+            background-color: #f4f7f6;
+        }
+
+        .container {
+            background: #edf2f7;
+            font-weight: bold;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 50px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: mediumseagreen;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-submit {
+            background-color: #007bff; /* Blue color */
+            color: white; /* White text */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+            width: 200px; /* Increase width */
+            text-align: center; /* Center text */
+            margin-top: 20px; /* Add top margin */
+        }
+    
+        .btn-submit:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+    
+        .btn-submit:active {
+            background-color: #004085; /* Even darker blue on click */
+            transform: translateY(0); /* Reset lift on click */
+        }
+    </style>
+</head>
+
+<body style="background:url(../static/images/2.jpg);">
+
+<body>
+    <div class="container">
+        <h1 style="color: darkgreen; font-weight: bold; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+            Fertilizer Recommendation
+        </h1>
+        
+
+        <form method="post" action="{{ url_for('predict_fertilizer') }}" id="Home">
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="temp">Temperature</label>
+                    <input type="number" class="form-control" name="temp" id="temp" placeholder="Enter temperature (°C)" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="humid">Humidity</label>
+                    <input type="number" class="form-control" name="humid" id="humid" placeholder="Enter humidity (%)" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="mois">Moisture</label>
+                    <input type="number" class="form-control" name="mois" id="mois" placeholder="Enter moisture level (%)" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="soil">Soil Type</label>
+                    <select class="form-control" name="soil" id="soil" required>
+                        <option value="" disabled selected>Select soil type</option>
+                        <option value="0">Black</option>
+                        <option value="1">Clayey</option>
+                        <option value="2">Loamy</option>
+                        <option value="3">Red</option>
+                        <option value="4">Sandy</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="crop">Crop Type</label>
+                    <select class="form-control" name="crop" id="crop" required>
+                        <option value="" disabled selected>Select crop type</option>
+                        <option value="0">Barley</option>
+                        <option value="1">Cotton</option>
+                        <option value="2">Ground Nuts</option>
+                        <option value="3">Maize</option>
+                        <option value="4">Millets</option>
+                        <option value="5">Oil Seeds</option>
+                        <option value="6">Paddy</option>
+                        <option value="7">Pulses</option>
+                        <option value="8">Sugarcane</option>
+                        <option value="9">Tobacco</option>
+                        <option value="10">Wheat</option>
+                        <option value="11">Coffee</option>
+                        <option value="12">Kidney Beans</option>
+                        <option value="13">Orange</option>
+                        <option value="14">Pomegranate</option>
+                        <option value="15">Rice</option>
+                        <option value="16">Watermelon</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="nitro">Nitrogen</label>
+                    <input type="number" class="form-control" name="nitro" id="nitro" placeholder="Enter nitrogen content" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="pota">Potassium</label>
+                    <input type="number" class="form-control" name="pota" id="pota" placeholder="Enter potassium content" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="phos">Phosphorous</label>
+                    <input type="number" class="form-control" name="phos" id="phos" placeholder="Enter phosphorus content" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-submit">Predict</button>
+        </form>
+    </div>
+
+    <div class="container mt-4">
+        <h2>Recommended Fertilizer: <span style="color: darkgreen; font-weight: bold;">{{x}}</span></h2>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoQu5yv5C5ZBb4EFvL1E39jKR3kjqLcc4nkp3rnLs3sT5fh" crossorigin="anonymous"></script>
+</body>
+
+</html>
