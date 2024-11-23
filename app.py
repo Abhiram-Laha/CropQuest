@@ -4,11 +4,11 @@ import pickle
 from flask_session import Session  
 
 # Load model (Crop Recommendation)
-model_crop = pickle.load(open('Models\\RandomForest.pkl', 'rb'))
+model_crop = pickle.load(open('RandomForest.pkl', 'rb'))
 
 # Load model (Fertilizer Recommendation)
-model_ferti = pickle.load(open('Models\\classifier.pkl', 'rb'))
-ferti = pickle.load(open('Models\\fertilizer.pkl', 'rb'))
+model_ferti = pickle.load(open('classifier.pkl', 'rb'))
+ferti = pickle.load(open('fertilizer.pkl', 'rb'))
 
 
 app = Flask(__name__)
