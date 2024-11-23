@@ -19,10 +19,6 @@ def home():
     return render_template('index.html')
 
 
-
-
-# Render crop recommendation form page (1)
-
 @app.route('/crop-recommend')
 def crop_recommendation():
     return render_template('crop_rec.html')
