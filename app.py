@@ -75,6 +75,8 @@ def predict_crop():
     return render_template('crop_rec.html', result=result, image_filename=image_filename)
 
 
+
+
 #? 2. Fertilizer Suggestion
 
 @app.route('/fertilizer-suggestion')
