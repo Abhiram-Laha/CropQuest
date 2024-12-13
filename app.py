@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 from flask_session import Session  
 
-model_crop = pickle.load(open('RandomForest.pkl', 'rb'))
+model_crop = pickle.load(open('Models\RandomForest.pkl', 'rb'))
 
 
 app = Flask(__name__)
