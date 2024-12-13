@@ -4,8 +4,8 @@ import pickle
 from flask_session import Session  
 
 model_crop = pickle.load(open('Models/RandomForest.pkl', 'rb'))
-model = pickle.load(open('Models/classifier.pkl', 'rb'))
-ferti = pickle.load(open('Models/fertilizer.pkl', 'rb'))
+model_ferti1 = pickle.load(open('Models/classifier.pkl', 'rb'))
+model_ferti2 = pickle.load(open('Models/fertilizer.pkl', 'rb'))
 
 
 app = Flask(__name__)
@@ -101,8 +101,8 @@ def predict_fertilizer():
 
         input_values = [int(temp), int(humi), int(mois), int(soil), int(crop), int(nitro), int(pota), int(phosp)]
 
-        prediction = model.predict([input_values])
-        res = str(ferti.classes_[prediction[0]])
+        prediction = model_ferti1.predict([input_values])
+        res = str(model_ferti2.classes_[prediction[0]])
 
         session['fertilizer_result'] = res
         return redirect(url_for('fertilizer_suggestion'))
