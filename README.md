@@ -137,12 +137,20 @@ The homepage provides an overview of the application and links to its core funct
 ## **Screenshots**
 
 ### **Home Page**
+![image](https://github.com/user-attachments/assets/d2e58c40-714e-4373-b7d6-5cdf97112a90)
+![image](https://github.com/user-attachments/assets/67bdcad6-4e1d-4657-8819-86a7ddc77c4a)
+![image](https://github.com/user-attachments/assets/6fa819b2-7627-41ea-b145-59a702868752)
+
 _Description: Screenshot of the homepage with an overview of features._
 
 ### **Crop Recommendation Page**
+![image](https://github.com/user-attachments/assets/c4cb3725-bc49-4cfc-a797-e0ad223c9ded)
+
 _Description: Screenshot of the input form and prediction results for crop recommendation._
 
 ### **Fertilizer Recommendation Page**
+![image](https://github.com/user-attachments/assets/09f23478-67ec-4bb5-92c9-84b4cfa058fc)
+
 _Description: Screenshot of the input form and prediction results for fertilizer recommendation._
 
 ---
